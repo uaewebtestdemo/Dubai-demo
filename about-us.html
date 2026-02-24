@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" id="root" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | sympleDay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Brand Colors */
+            --brand-dark: #2c2c2b;
+            --brand-green: #8a9a5b;
+            --brand-light: #F9F6F0;
+            --accent-color: var(--brand-green);
+            --white: #ffffff;
+            --gray-text: #666666;
+            --gray-light: #f5f5f5;
+            --border-light: #eaeaeb;
+            
+            --font-en: 'Montserrat', sans-serif;
+            --font-ar: 'Tajawal', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--white); color: var(--brand-dark); 
+            line-height: 1.6; font-family: var(--font-en); overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Language & Mode State Handlers */
+        html[lang="ar"] body { font-family: var(--font-ar); }
+        html[lang="en"] .only-ar { display: none !important; }
+        html[lang="ar"] .only-en { display: none !important; }
+        body.mode-user .only-provider { display: none !important; }
+        body.mode-provider .only-user { display: none !important; }
+
+        h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
+        p { color: var(--gray-text); }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- Navigation & Header --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 5%; background: rgba(255, 255, 255, 0.95); 
+            position: fixed; width: 100%; top: 0; z-index: 1000; 
+            box-shadow: 0 4px 30px rgba(0,0,0,0.03); backdrop-filter: blur(15px);
+            transition: var(--transition);
+        }
+        .logo img { height: 120px; transition: var(--transition); }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-center { display: flex; gap: 2.5rem; align-items: center; font-weight: 600; font-size: 0.95rem; }
+        .nav-center a { transition: var(--transition); position: relative; }
+        .nav-center a:hover { color: var(--accent-color); }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+
+        /* Burger Menu Icon */
+        .burger-menu {
+            display: none; font-size: 28px; background: none; border: none;
+            color: var(--brand-dark); cursor: pointer; transition: var(--transition);
+        }
+
+        /* Language Flags */
+        .lang-switch {
+            display: flex; align-items: center; gap: 8px; background: var(--gray-light);
+            padding: 5px; border-radius: 30px; border: 1px solid var(--border-light);
+        }
+        .flag-btn {
+            width: 28px; height: 28px; border-radius: 50%; border: none; cursor: pointer;
+            background-size: cover; background-position: center; transition: var(--transition);
+            filter: grayscale(100%) opacity(0.5); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+        }
+        .flag-btn.active { filter: grayscale(0%) opacity(1); box-shadow: 0 2px 8px rgba(0,0,0,0.2); transform: scale(1.15); }
+        .flag-us { background-image: url('https://flagcdn.com/w80/us.png'); }
+        .flag-ae { background-image: url('https://flagcdn.com/w80/ae.png'); }
+
+        /* Sleek Symmetric Bubble Toggle */
+        .master-toggle-wrapper {
+            display: flex; justify-content: center; margin-top: 180px;
+            position: relative; z-index: 10; margin-bottom: 20px;
+        }
+        .master-toggle {
+            display: grid; grid-template-columns: 1fr 1fr;
+            background: var(--gray-light); border-radius: 50px; 
+            padding: 6px; border: 1px solid var(--border-light); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative; width: 340px; 
+        }
+        .toggle-btn {
+            padding: 12px 0; border: none; background: transparent; cursor: pointer;
+            font-size: 0.95rem; font-weight: 600; font-family: inherit; color: var(--gray-text);
+            z-index: 2; transition: color 0.4s ease; text-align: center;
+        }
+        .toggle-btn.active { color: var(--white); }
+        .toggle-bg {
+            position: absolute; top: 6px; bottom: 6px; left: 6px; width: calc(50% - 6px); 
+            background: var(--brand-dark); border-radius: 40px; 
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.5s ease; 
+            z-index: 1; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        html[lang="ar"] .toggle-bg { left: auto; right: 6px; } 
+        body.mode-provider .toggle-bg { transform: translateX(100%); background: var(--accent-color); }
+        html[lang="ar"] body.mode-provider .toggle-bg { transform: translateX(-100%); background: var(--accent-color); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 14px 32px; border-radius: 50px; font-weight: 600;
+            transition: var(--transition); border: none; cursor: pointer; font-size: 1rem;
+        }
+        .btn-dark { background-color: var(--brand-dark); color: var(--white); }
+        .btn-dark:hover { background-color: #000; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .btn-green { background-color: var(--accent-color); color: var(--white); }
+        .btn-green:hover { background-color: #76854d; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(138, 154, 91, 0.3); }
+
+        /* --- About Us Specific Styles --- */
+        .about-header { text-align: center; padding: 40px 5% 60px; max-width: 900px; margin: 0 auto; }
+        .about-header h1 { font-size: 3.5rem; margin-bottom: 1.5rem; color: var(--brand-dark); letter-spacing: -1px; line-height: 1.1; }
+        .about-header p { font-size: 1.25rem; color: var(--gray-text); margin-bottom: 2rem; }
+
+        .mission-section { background: var(--brand-light); padding: 6rem 5%; }
+        .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto; align-items: center; }
+        .mission-text h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .mission-text p { font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .mission-image { 
+            width: 100%; height: 500px; border-radius: 30px; 
+            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop') center/cover;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+
+        .values-section { padding: 6rem 5%; max-width: 1200px; margin: 0 auto; }
+        .values-header { text-align: center; margin-bottom: 4rem; }
+        .values-header h2 { font-size: 2.5rem; }
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+        .value-card { 
+            text-align: center; padding: 3rem 2rem; background: var(--white); 
+            border-radius: 20px; border: 1px solid var(--border-light);
+            transition: var(--transition); box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+        .value-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent-color); }
+        .value-icon { 
+            font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1.5rem; 
+            display: inline-flex; width: 80px; height: 80px; align-items: center; justify-content: center;
+            background: rgba(138, 154, 91, 0.1); border-radius: 50%;
+        }
+        .value-card h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+
+        /* Scroll Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Mobile Header & Layout Adjustments */
+        @media (max-width: 950px) {
+            .burger-menu { display: block; }
+            .nav-menu {
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98);
+                padding: 20px 5%; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 1px solid var(--border-light);
+            }
+            .nav-menu.active { display: flex; }
+            .nav-center { display: flex; flex-direction: column; gap: 1.5rem; width: 100%; text-align: center; border-bottom: 1px solid var(--border-light); padding-bottom: 20px; }
+            .nav-right { flex-direction: column; width: 100%; gap: 1rem; }
+            .nav-right .btn { width: 100%; }
+            .master-toggle-wrapper { margin-top: 140px; }
+            
+            .mission-grid { grid-template-columns: 1fr; }
+            .mission-image { height: 350px; order: -1; } /* Image moves to top on mobile */
+            .about-header h1 { font-size: 2.5rem; }
+        }
+
+        /* Footer */
+        footer { background: var(--brand-dark); color: #aaa; padding: 4rem 5% 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+        .footer-logo { filter: brightness(0) invert(1); height: 60px; margin-bottom: 1.5rem; opacity: 0.9;}
+        footer h4 { color: white; margin-bottom: 1.5rem; font-size: 1.1rem; }
+        footer ul { list-style: none; }
+        footer ul li { margin-bottom: 0.8rem; }
+        footer a:hover { color: var(--accent-color); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } }
+    </style>
+</head>
+<body class="mode-user">
+
+    <nav id="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="Logo-PNG-Transparent-background.png" alt="sympleDay Logo" id="nav-logo">
+            </a>
+        </div>
+        
+        <button class="burger-menu" id="burgerMenu" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-menu" id="navMenu">
+            <div class="nav-center">
+                <a href="index.html"><span class="only-en">Home</span><span class="only-ar">الرئيسية</span></a>
+                <a href="how-it-works.html"><span class="only-en">How it Works</span><span class="only-ar">كيف تعمل</span></a>
+                <a href="contact.html"><span class="only-en">Contact</span><span class="only-ar">اتصل بنا</span></a>
+            </div>
+
+            <div class="nav-right">
+                <div class="lang-switch">
+                    <button class="flag-btn flag-us active" onclick="setLang('en')" title="English"></button>
+                    <button class="flag-btn flag-ae" onclick="setLang('ar')" title="Arabic"></button>
+                </div>
+                <a href="#download" class="btn btn-dark only-user" style="padding: 10px 24px; font-size: 0.9rem;">
+                    <span class="only-en">Get the App</span><span class="only-ar">احصل على التطبيق</span>
+                </a>
+                <a href="#register" class="btn btn-green only-provider" style="padding: 10px 24px; font-size: 0.9rem;">
+                    <span class="only-en">Start Free Trial</span><span class="only-ar">التجربة المجانية</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="master-toggle-wrapper">
+        <div class="master-toggle">
+            <div class="toggle-bg"></div>
+            <button class="toggle-btn active" onclick="setMode('user')" id="btn-user">
+                <span class="only-en">I am a Client</span><span class="only-ar">أنا عميل</span>
+            </button>
+            <button class="toggle-btn" onclick="setMode('provider')" id="btn-provider">
+                <span class="only-en">I am a Professional</span><span class="only-ar">أنا محترف</span>
+            </button>
+        </div>
+    </div>
+
+    <header class="about-header reveal active">
+        <h1 class="only-user only-en">Redefining Service Booking in the UAE.</h1>
+        <h1 class="only-user only-ar">إعادة صياغة حجز الخدمات في الإمارات.</h1>
+        <p class="only-user only-en">We believe finding and booking the best local professionals should be as simple as sending a text. No waiting, no hassle, just exceptional service.</p>
+        <p class="only-user only-ar">نعتقد أن العثور على أفضل المحترفين المحليين وحجزهم يجب أن يكون بسيطًا. لا انتظار، لا متاعب، مجرد خدمة استثنائية.</p>
+
+        <h1 class="only-provider only-en">Empowering UAE Professionals to Thrive.</h1>
+        <h1 class="only-provider only-ar">تمكين محترفي الإمارات من الازدهار.</h1>
+        <p class="only-provider only-en">We built sympleDay to give control back to service providers. Stop paying massive commissions and start growing your business on your own terms.</p>
+        <p class="only-provider only-ar">قمنا ببناء sympleDay لإعادة التحكم إلى مزودي الخدمة. توقف عن دفع عمولات ضخمة وابدأ في تنمية عملك بشروطك الخاصة.</p>
+    </header>
+
+    <section class="mission-section reveal">
+        <div class="mission-grid">
+            <div class="mission-text">
+                <h2 class="only-en">Our Story</h2><h2 class="only-ar">قصتنا</h2>
+                
+                <p class="only-user only-en">It started with a simple frustration: why does it take three phone calls, two WhatsApp messages, and a deposit link just to book a haircut or a home cleaning?</p>
+                <p class="only-user only-ar">بدأ الأمر بإحباط بسيط: لماذا يستغرق الأمر ثلاث مكالمات هاتفية ورسالتين على واتساب ورابط إيداع فقط لحجز قصة شعر أو تنظيف المنزل؟</p>
+                
+                <p class="only-user only-en">We built sympleDay to cut out the noise. We are bringing the UAE’s top salons, mechanics, cleaners, and tutors into one seamless app. Real-time calendars, instant confirmations, and secure payments.</p>
+                <p class="only-user only-ar">قمنا ببناء sympleDay لتقليل الضوضاء. نحن نجمع أفضل الصالونات وعمال النظافة والمعلمين في الإمارات في تطبيق واحد سلس. تقاويم في الوقت الفعلي وتأكيدات فورية.</p>
+
+                <p class="only-provider only-en">We noticed a broken system: booking platforms were taking 20% to 30% of a professional's hard-earned money just for facilitating a calendar appointment.</p>
+                <p class="only-provider only-ar">لاحظنا وجود نظام مكسور: كانت منصات الحجز تأخذ 20٪ إلى 30٪ من أموال المحترفين التي حصلوا عليها بشق الأنفس فقط لتسهيل موعد التقويم.</p>
+
+                <p class="only-provider only-en">sympleDay was created to be the ultimate operating system for your business. We provide you with the tools to manage your clients, block your travel time, and accept deposits—all while keeping 100% of your earnings.</p>
+                <p class="only-provider only-ar">تم إنشاء sympleDay ليكون نظام التشغيل النهائي لعملك. نحن نزودك بالأدوات اللازمة لإدارة عملائك وقبول الودائع، مع الاحتفاظ بـ 100٪ من أرباحك.</p>
+            </div>
+            <div class="mission-image"></div>
+        </div>
+    </section>
+
+    <section class="values-section reveal">
+        <div class="values-header">
+            <h2 class="only-en">What Drives Us</h2><h2 class="only-ar">ما يحركنا</h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><i class="fa-solid fa-handshake"></i></div>
+                <h3 class="only-en">Absolute Trust</h3><h3 class="only-ar">ثقة مطلقة</h3>
+                <p class="only-en">We only verify genuine reviews and partner with vetted professionals to ensure every booking is a premium experience.</p>
+                <p class="only-ar">نحن نتحقق فقط من التقييمات الحقيقية ونتشارك مع محترفين معتمدين لضمان أن كل حجز يمثل تجربة متميزة.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                <h3 class="only-en">Fairness First</h3><h3 class="only-ar">الإنصاف أولاً</h3>
+                <p class="only-en">We believe professionals should keep the money they earn. Our 0% commission model guarantees fairness across the platform.</p>
+                <p class="only-ar">نعتقد أن المحترفين يجب أن يحتفظوا بالأموال التي يكسبونها. يضمن نموذج العمولة 0٪ الخاص بنا الإنصاف عبر المنصة.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3 class="only-en">Simplicity</h3><h3 class="only-ar">البساطة</h3>
+                <p class="only-en">Technology should make life easier, not more complicated. We design every feature to save you time and energy.</p>
+                <p class="only-ar">يجب أن تجعل التكنولوجيا الحياة أسهل. نحن نصمم كل ميزة لتوفير وقتك وطاقتك.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <img src="Logo-PNG-Transparent-background.png" alt="sympleDay Logo" class="footer-logo">
+                <p class="only-en" style="color: #888;">The premium booking platform connecting the UAE. Empowering professionals, delighting clients.</p>
+                <p class="only-ar" style="color: #888;">منصة الحجز الرائدة في الإمارات. تمكين المحترفين وإسعاد العملاء.</p>
+            </div>
+            <div>
+                <h4 class="only-en">Platform</h4><h4 class="only-ar">المنصة</h4>
+                <ul>
+                    <li><a href="how-it-works.html"><span class="only-en">How it Works</span><span class="only-ar">كيف تعمل</span></a></li>
+                    <li><a href="#"><span class="only-en">For Providers</span><span class="only-ar">للمزودين</span></a></li>
+                    <li><a href="index.html#pricing"><span class="only-en">Pricing</span><span class="only-ar">الأسعار</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="only-en">Company</h4><h4 class="only-ar">الشركة</h4>
+                <ul>
+                    <li><a href="about-us.html"><span class="only-en">About Us</span><span class="only-ar">من نحن</span></a></li>
+                    <li><a href="contact.html"><span class="only-en">Contact</span><span class="only-ar">اتصل بنا</span></a></li>
+                    <li><a href="#"><span class="only-en">Careers</span><span class="only-ar">الوظائف</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="only-en">Legal</h4><h4 class="only-ar">قانوني</h4>
+                <ul>
+                    <li><a href="#"><span class="only-en">Privacy Policy</span><span class="only-ar">سياسة الخصوصية</span></a></li>
+                    <li><a href="#"><span class="only-en">Terms of Service</span><span class="only-ar">شروط الخدمة</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 sympleDay UAE. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- On Page Load: Read saved language from LocalStorage ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('sympleDay_language') || 'en';
+            setLang(savedLang);
+        });
+
+        // --- Burger Menu Logic ---
+        const burgerBtn = document.getElementById('burgerMenu');
+        const navMenu = document.getElementById('navMenu');
+        
+        burgerBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = burgerBtn.querySelector('i');
+            if(navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // --- Nav Shrink Effect ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            const logo = document.getElementById('nav-logo');
+            if (window.scrollY > 50) {
+                nav.style.padding = '10px 5%';
+                logo.style.height = '90px';
+            } else {
+                nav.style.padding = '15px 5%';
+                logo.style.height = '120px';
+            }
+        });
+
+        // --- Master Toggle Logic ---
+        function setMode(mode) {
+            document.body.className = `mode-${mode}`;
+            document.getElementById('btn-user').classList.toggle('active', mode === 'user');
+            document.getElementById('btn-provider').classList.toggle('active', mode === 'provider');
+        }
+
+        // --- Language Toggle Logic (Saved to LocalStorage) ---
+        function setLang(lang) {
+            localStorage.setItem('sympleDay_language', lang);
+
+            const root = document.getElementById('root');
+            const flagUs = document.querySelector('.flag-us');
+            const flagAe = document.querySelector('.flag-ae');
+
+            if (lang === 'ar') {
+                root.setAttribute('lang', 'ar');
+                root.setAttribute('dir', 'rtl');
+                flagAe.classList.add('active');
+                flagUs.classList.remove('active');
+            } else {
+                root.setAttribute('lang', 'en');
+                root.setAttribute('dir', 'ltr');
+                flagUs.classList.add('active');
+                flagAe.classList.remove('active');
+            }
+        }
+
+        // --- Scroll Reveal Animations ---
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
