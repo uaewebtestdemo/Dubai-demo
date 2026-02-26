@@ -10,6 +10,12 @@
 </head>
 <body class="mode-user page-contact">
 
+    <div class="bg-shapes-container">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+    </div>
+
     <nav id="navbar">
         <div class="logo">
             <a href="index.html">
@@ -105,16 +111,16 @@
                 <h2 class="only-ar">إرسال رسالة</h2>
                 <form class="contact-form">
 
-                    <div class="form-group">
-                        <label class="form-label only-en">Full Name</label>
-                        <label class="form-label only-ar">الاسم الكامل</label>
-                        <input type="text" class="form-control" required>
+                    <div class="form-group floating-group">
+                        <input type="text" class="form-control" required placeholder=" ">
+                        <label class="floating-label only-en">Full Name</label>
+                        <label class="floating-label only-ar">الاسم الكامل</label>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label only-en">Email Address</label>
-                        <label class="form-label only-ar">البريد الإلكتروني</label>
-                        <input type="email" class="form-control" required>
+                    <div class="form-group floating-group">
+                        <input type="email" class="form-control" required placeholder=" ">
+                        <label class="floating-label only-en">Email Address</label>
+                        <label class="floating-label only-ar">البريد الإلكتروني</label>
                     </div>
 
                     <div class="form-group">
@@ -140,16 +146,26 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label only-en">Your Message</label>
-                        <label class="form-label only-ar">رسالتك</label>
-                        <textarea class="form-control" required></textarea>
+                    <div class="form-group floating-group">
+                        <textarea class="form-control" required placeholder=" "></textarea>
+                        <label class="floating-label only-en">Your Message</label>
+                        <label class="floating-label only-ar">رسالتك</label>
                     </div>
 
                     <button type="submit" class="btn btn-dark btn-submit">
                         <span class="only-en">Submit Message</span>
                         <span class="only-ar">إرسال الرسالة</span>
                     </button>
+
+                    <div class="success-message">
+                        <div class="checkmark-circle">
+                            <div class="checkmark"></div>
+                        </div>
+                        <h3 class="only-en">Message Sent!</h3>
+                        <h3 class="only-ar">تم الإرسال!</h3>
+                        <p class="only-en">We'll get back to you shortly.</p>
+                        <p class="only-ar">سنرد عليك قريباً.</p>
+                    </div>
                 </form>
             </div>
 
