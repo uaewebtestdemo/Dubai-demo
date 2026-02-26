@@ -404,9 +404,9 @@
         });
 
         // --- Nav Shrink Effect ---
+        const nav = document.getElementById('navbar');
+        const logo = document.getElementById('nav-logo');
         window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            const logo = document.getElementById('nav-logo');
             if (window.scrollY > 50) {
                 nav.style.padding = '10px 5%';
                 logo.style.height = '90px';
