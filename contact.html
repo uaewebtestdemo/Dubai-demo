@@ -3,6 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://flagcdn.com; connect-src 'self';">
+    <title>Contact Us | sympleDay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body class="mode-user">
+
+    <nav id="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="Logo-PNG-Transparent-background.png" alt="sympleDay Logo" id="nav-logo">
+            </a>
+        </div>
+
+        <button class="burger-menu" id="burgerMenu" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-menu" id="navMenu">
+            <div class="nav-center">
+                <a href="index.html"><span class="only-en">Home</span><span class="only-ar">الرئيسية</span></a>
+                <a href="how-it-works.html"><span class="only-en">How it Works</span><span class="only-ar">كيف تعمل</span></a>
+                <a href="about-us.html"><span class="only-en">About Us</span><span class="only-ar">من نحن</span></a>
+            </div>
+
+            <div class="nav-right">
+                <div class="lang-switch">
+                    <button class="flag-btn flag-us active" data-lang="en" title="English"></button>
+                    <button class="flag-btn flag-ae" data-lang="ar" title="Arabic"></button>
+                </div>
+                <a href="#download" class="btn btn-dark only-user nav-btn-custom">
+                    <span class="only-en">Get the App</span><span class="only-ar">احصل على التطبيق</span>
+                </a>
+                <a href="#register" class="btn btn-green only-provider nav-btn-custom">
+                    <span class="only-en">Start Free Trial</span><span class="only-ar">التجربة المجانية</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="master-toggle-wrapper">
+        <div class="master-toggle">
+            <div class="toggle-bg"></div>
+            <button class="toggle-btn active" data-mode="user" id="btn-user">
+                <span class="only-en">I am a Client</span><span class="only-ar">أنا عميل</span>
+            </button>
+            <button class="toggle-btn" data-mode="provider" id="btn-provider">
+                <span class="only-en">I am a Professional</span><span class="only-ar">أنا محترف</span>
+            </button>
+        </div>
+    </div>
+
+    <header class="page-header reveal active">
+        <h1 class="only-en">Get in Touch</h1>
+        <h1 class="only-ar">تواصل معنا</h1>
+
+        <p class="only-user only-en">Have a question about a booking or need help with the app? We're here for you.</p>
+        <p class="only-user only-ar">هل لديك سؤال حول حجز أو تحتاج إلى مساعدة في التطبيق؟ نحن هنا من أجلك.</p>
+
+        <p class="only-provider only-en">Ready to scale your business? Contact our partnership team for dedicated support.</p>
+        <p class="only-provider only-ar">هل أنت مستعد لتوسيع نطاق عملك؟ اتصل بفريق الشراكة للحصول على دعم مخصص.</p>
+    </header>
+
+    <section class="contact-section reveal">
+        <div class="contact-grid">
+
+            <div class="contact-info-wrapper">
+                <div class="contact-info-card">
+                    <div class="icon-box"><i class="fa-regular fa-envelope"></i></div>
+                    <div class="info-details">
+                        <h3 class="only-en">Email Us</h3><h3 class="only-ar">راسلنا</h3>
+                        <p class="only-user">support@sympleday.com</p>
+                        <p class="only-provider">partners@sympleday.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+                    <div class="info-details">
+                        <h3 class="only-en">Call Us</h3><h3 class="only-ar">اتصل بنا</h3>
+                        <p>+971 4 123 4567</p>
+                        <p class="only-en contact-info-small">Mon-Fri, 9am - 6pm (GST)</p>
+                        <p class="only-ar contact-info-small">الاثنين - الجمعة، 9 ص - 6 م</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="info-details">
+                        <h3 class="only-en">Visit Us</h3><h3 class="only-ar">مقرنا</h3>
+                        <p class="only-en">Dubai Internet City<br>Building 14, Office 302<br>Dubai, UAE</p>
+                        <p class="only-ar">مدينة دبي للإنترنت<br>مبنى 14، مكتب 302<br>دبي، الإمارات العربية المتحدة</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-wrapper">
+                <h2 class="only-en">Send a Message</h2>
+                <h2 class="only-ar">إرسال رسالة</h2>
+                <form class="contact-form">
+
+                    <div class="form-group">
+                        <label class="form-label only-en">Full Name</label>
+                        <label class="form-label only-ar">الاسم الكامل</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label only-en">Email Address</label>
+                        <label class="form-label only-ar">البريد الإلكتروني</label>
+                        <input type="email" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label only-en">Subject</label>
+                        <label class="form-label only-ar">الموضوع</label>
+                        <select class="form-control" required>
+                            <option value="" disabled selected class="only-en">Select a topic...</option>
+                            <option value="" disabled selected class="only-ar">اختر موضوعاً...</option>
+
+                            <option class="only-user only-en">App Support</option>
+                            <option class="only-user only-en">Booking Issue</option>
+                            <option class="only-user only-en">Feedback</option>
+                            <option class="only-user only-ar">دعم التطبيق</option>
+                            <option class="only-user only-ar">مشكلة في الحجز</option>
+                            <option class="only-user only-ar">ملاحظات</option>
+
+                            <option class="only-provider only-en">Account Setup Help</option>
+                            <option class="only-provider only-en">Sales Inquiry</option>
+                            <option class="only-provider only-en">Partnership Opportunities</option>
+                            <option class="only-provider only-ar">المساعدة في إعداد الحساب</option>
+                            <option class="only-provider only-ar">استفسار مبيعات</option>
+                            <option class="only-provider only-ar">فرص الشراكة</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label only-en">Your Message</label>
+                        <label class="form-label only-ar">رسالتك</label>
+                        <textarea class="form-control" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark btn-submit">
+                        <span class="only-en">Submit Message</span>
+                        <span class="only-ar">إرسال الرسالة</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <img src="Logo-PNG-Transparent-background.png" alt="sympleDay Logo" class="footer-logo">
+                <p class="only-en footer-desc">The premium booking platform connecting the UAE. Empowering professionals, delighting clients.</p>
+                <p class="only-ar footer-desc">منصة الحجز الرائدة في الإمارات. تمكين المحترفين وإسعاد العملاء.</p>
+            </div>
+            <div>
+                <h4 class="only-en">Platform</h4><h4 class="only-ar">المنصة</h4>
+                <ul>
+                    <li><a href="how-it-works.html"><span class="only-en">How it Works</span><span class="only-ar">كيف تعمل</span></a></li>
+                    <li><a href="#"><span class="only-en">For Providers</span><span class="only-ar">للمزودين</span></a></li>
+                    <li><a href="index.html#pricing"><span class="only-en">Pricing</span><span class="only-ar">الأسعار</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="only-en">Company</h4><h4 class="only-ar">الشركة</h4>
+                <ul>
+                    <li><a href="about-us.html"><span class="only-en">About Us</span><span class="only-ar">من نحن</span></a></li>
+                    <li><a href="contact.html"><span class="only-en">Contact</span><span class="only-ar">اتصل بنا</span></a></li>
+                    <li><a href="#"><span class="only-en">Careers</span><span class="only-ar">الوظائف</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="only-en">Legal</h4><h4 class="only-ar">قانوني</h4>
+                <ul>
+                    <li><a href="#"><span class="only-en">Privacy Policy</span><span class="only-ar">سياسة الخصوصية</span></a></li>
+                    <li><a href="#"><span class="only-en">Terms of Service</span><span class="only-ar">شروط الخدمة</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 sympleDay UAE. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="contact.js" defer></script>
+</body>
+<!DOCTYPE html>
+<html lang="en" id="root" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | sympleDay</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
