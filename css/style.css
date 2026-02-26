@@ -511,10 +511,10 @@ footer a:hover { color: var(--accent-color); }
         width: 100%;
     }
 
-    .master-toggle-wrapper { margin-top: 170px; }
+    .master-toggle-wrapper { margin-top: 150px; }
     body.page-how-it-works .master-toggle-wrapper,
     body.page-contact .master-toggle-wrapper,
-    body.page-about-us .master-toggle-wrapper { margin-top: 190px; }
+    body.page-about-us .master-toggle-wrapper { margin-top: 150px; }
 
     /* Home Page Mobile */
     .hero { flex-direction: column; text-align: center; padding-top: 20px; min-height: auto; }
@@ -569,4 +569,172 @@ html { scroll-behavior: smooth; }
 
 .btn-green:hover, .btn-dark:hover {
     animation: pulse-cta 1s infinite;
+}
+
+/* --- New Enhancements --- */
+
+/* Floating Labels */
+.floating-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.floating-group .form-control {
+    padding: 20px 20px 10px;
+    height: 56px;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.floating-group textarea.form-control {
+    height: auto;
+    min-height: 150px;
+    padding-top: 25px;
+}
+
+.floating-label {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    font-size: 1rem;
+    color: var(--gray-text);
+    pointer-events: none;
+    transition: 0.2s ease all;
+    background: transparent;
+}
+
+/* RTL Support for Floating Label */
+html[lang="ar"] .floating-label {
+    left: auto;
+    right: 20px;
+}
+
+/* Label Moves Up when Input has Focus or Value */
+.form-control:focus ~ .floating-label,
+.form-control:not(:placeholder-shown) ~ .floating-label {
+    top: 8px;
+    font-size: 0.75rem;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* 3D Card Effects & Glare */
+.card-3d {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+.glare {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(125deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 40%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 10;
+}
+
+.card-3d:hover .glare {
+    opacity: 1;
+}
+
+/* Background Shapes Animation */
+.bg-shapes-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.6;
+    animation: floatShape 20s infinite alternate ease-in-out;
+}
+
+.shape-1 {
+    width: 400px;
+    height: 400px;
+    background: rgba(138, 154, 91, 0.15);
+    top: -100px;
+    left: -100px;
+}
+
+.shape-2 {
+    width: 300px;
+    height: 300px;
+    background: rgba(200, 200, 200, 0.1);
+    bottom: 10%;
+    right: -50px;
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    width: 200px;
+    height: 200px;
+    background: rgba(138, 154, 91, 0.1);
+    top: 40%;
+    left: 20%;
+    animation-delay: -10s;
+}
+
+@keyframes floatShape {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(30px, 50px) rotate(10deg); }
+}
+
+/* Success Animation Checkmark */
+.success-message {
+    text-align: center;
+    padding: 2rem;
+    display: none; /* Hidden by default */
+    animation: fadeIn 0.5s ease-out;
+}
+
+.checkmark-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    box-shadow: 0 10px 20px rgba(138, 154, 91, 0.3);
+}
+
+.checkmark {
+    width: 40px;
+    height: 20px;
+    border-left: 4px solid white;
+    border-bottom: 4px solid white;
+    transform: rotate(-45deg) translate(2px, -2px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Glare Update */
+.glare {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    mix-blend-mode: overlay;
+    pointer-events: none;
 }

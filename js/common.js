@@ -110,12 +110,28 @@ window.setMode = setMode;
 
 // --- Tilt Effect ---
 function initTiltEffect() {
-    const cards = document.querySelectorAll('.feature-card, .cat-card, .value-card, .contact-info-card');
+    const cards = document.querySelectorAll('.feature-card, .cat-card, .value-card, .contact-info-card, .contact-form-wrapper');
 
     // Avoid running on touch devices
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
     cards.forEach(card => {
+        // Add 3D class and glare element if not present
+        card.classList.add('card-3d');
+        if (!card.querySelector('.glare')) {
+            const glare = document.createElement('div');
+            glare.classList.add('glare');
+            card.appendChild(glare);
+
+            // Ensure card has relative positioning for glare
+            const style = getComputedStyle(card);
+            if (style.position === 'static') {
+                card.style.position = 'relative';
+            }
+            // Ensure overflow is hidden so glare doesn't spill out
+            card.style.overflow = 'hidden';
+        }
+
         card.addEventListener('mouseenter', function() {
             this.style.transition = 'all 0.1s ease-out';
         });
@@ -128,9 +144,18 @@ function initTiltEffect() {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
 
-            // Calculate rotation (max 5 degrees)
-            const rotateX = ((y - centerY) / centerY) * -5;
-            const rotateY = ((x - centerX) / centerX) * 5;
+            // Calculate rotation (increased to 8 degrees for more pop)
+            const rotateX = ((y - centerY) / centerY) * -8;
+            const rotateY = ((x - centerX) / centerX) * 8;
+
+            // Glare position
+            const glare = this.querySelector('.glare');
+            if (glare) {
+                // Position glare at cursor
+                glare.style.left = `${x}px`;
+                glare.style.top = `${y}px`;
+                glare.style.transform = 'translate(-50%, -50%)';
+            }
 
             this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
         });
@@ -146,4 +171,28 @@ function initTiltEffect() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', initTiltEffect);
+// --- Background Parallax ---
+function initParallaxShapes() {
+    const shapes = document.querySelectorAll('.bg-shape');
+    if (!shapes.length) return;
+
+    window.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth) - 0.5;
+        const y = (e.clientY / window.innerHeight) - 0.5;
+
+        shapes.forEach((shape, index) => {
+            const speed = (index + 1) * 20; // Different speeds
+            const xOffset = x * speed;
+            const yOffset = y * speed;
+
+            // Use margin to avoid conflict with transform animation
+            shape.style.marginLeft = `${xOffset}px`;
+            shape.style.marginTop = `${yOffset}px`;
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initTiltEffect();
+    initParallaxShapes();
+});
