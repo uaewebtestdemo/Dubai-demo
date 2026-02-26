@@ -687,10 +687,26 @@
         const heroInteractive = document.getElementById('hero-interactive');
         const phone3D = document.getElementById('phone-3d');
         
-        heroInteractive.addEventListener('mousemove', (e) => {
+        // Cache the center point of the element relative to the document
+        let centerX = 0, centerY = 0;
+
+        const updateCenter = () => {
             const rect = heroInteractive.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
+            const scrollX = window.scrollX || window.pageXOffset;
+            const scrollY = window.scrollY || window.pageYOffset;
+            centerX = rect.left + scrollX + rect.width / 2;
+            centerY = rect.top + scrollY + rect.height / 2;
+        };
+
+        // Initialize and listen for layout changes
+        updateCenter();
+        window.addEventListener('resize', updateCenter);
+        // Also update on mouseenter to catch any layout shifts that happened while outside
+        heroInteractive.addEventListener('mouseenter', updateCenter);
+
+        heroInteractive.addEventListener('mousemove', (e) => {
+            const x = e.pageX - centerX;
+            const y = e.pageY - centerY;
             const rotateY = x / 30;
             const rotateX = -(y / 30);
             phone3D.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
