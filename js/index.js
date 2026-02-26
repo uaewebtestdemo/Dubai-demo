@@ -105,3 +105,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Typing Effect for Hero ---
+    function initTypingEffect() {
+        const lang = document.documentElement.lang || 'en';
+        const targetH1 = document.querySelector(`.hero-text h1.only-${lang}`);
+
+        if (!targetH1) return;
+
+        const originalText = targetH1.textContent;
+        // Don't re-run if already empty (prevent double run issues)
+        if (originalText.trim() === '') return;
+
+        targetH1.textContent = '';
+
+        let i = 0;
+        function typeWriter() {
+            if (i < originalText.length) {
+                targetH1.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 40);
+            }
+        }
+
+        setTimeout(typeWriter, 300);
+    }
+
+    initTypingEffect();
+});
