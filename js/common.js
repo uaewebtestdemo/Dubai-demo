@@ -107,3 +107,43 @@ document.addEventListener('DOMContentLoaded', () => {
 // Expose functions globally just in case
 window.setLang = setLang;
 window.setMode = setMode;
+
+// --- Tilt Effect ---
+function initTiltEffect() {
+    const cards = document.querySelectorAll('.feature-card, .cat-card, .value-card, .contact-info-card');
+
+    // Avoid running on touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.1s ease-out';
+        });
+
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // Calculate rotation (max 5 degrees)
+            const rotateX = ((y - centerY) / centerY) * -5;
+            const rotateY = ((x - centerX) / centerX) * 5;
+
+            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transition = 'all 0.5s ease-out';
+            this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+
+            setTimeout(() => {
+                this.style.transition = '';
+            }, 500);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initTiltEffect);
