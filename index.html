@@ -3,334 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://flagcdn.com https://images.unsplash.com; connect-src 'self';">
     <title>sympleDay | Premium Service Booking in the UAE</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        :root {
-            /* Brand & Theme Colors */
-            --brand-dark: #2c2c2b;
-            --brand-green: #8a9a5b; /* sympleDay Green */
-            --brand-light: #F9F6F0;
-            --accent-color: var(--brand-green);
-            --white: #ffffff;
-            --gray-text: #666666;
-            --gray-light: #f5f5f5;
-            --border-light: #eaeaeb;
-            
-            --font-en: 'Montserrat', sans-serif;
-            --font-ar: 'Tajawal', sans-serif;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            background-color: var(--white); color: var(--brand-dark); 
-            line-height: 1.6; font-family: var(--font-en); overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Language & Mode State Handlers */
-        html[lang="ar"] body { font-family: var(--font-ar); }
-        html[lang="en"] .only-ar { display: none !important; }
-        html[lang="ar"] .only-en { display: none !important; }
-        body.mode-user .only-provider { display: none !important; }
-        body.mode-provider .only-user { display: none !important; }
-
-        h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
-        p { color: var(--gray-text); }
-        a { text-decoration: none; color: inherit; }
-
-        /* --- Navigation & Header --- */
-        nav {
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 15px 5%; background: rgba(255, 255, 255, 0.95); 
-            position: fixed; width: 100%; top: 0; z-index: 1000; 
-            box-shadow: 0 4px 30px rgba(0,0,0,0.03); backdrop-filter: blur(15px);
-            transition: var(--transition);
-        }
-        .logo img { height: 120px; transition: var(--transition); }
-        
-        /* Nav Menu Container (Groups links and buttons) */
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
-        }
-
-        .nav-center { display: flex; gap: 2.5rem; align-items: center; font-weight: 600; font-size: 0.95rem; }
-        .nav-center a { transition: var(--transition); position: relative; }
-        .nav-center a:hover { color: var(--accent-color); }
-        
-        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-
-        /* Burger Menu Icon (Hidden on Desktop) */
-        .burger-menu {
-            display: none;
-            font-size: 28px;
-            background: none;
-            border: none;
-            color: var(--brand-dark);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        /* Language Flags */
-        .lang-switch {
-            display: flex; align-items: center; gap: 8px; background: var(--gray-light);
-            padding: 5px; border-radius: 30px; border: 1px solid var(--border-light);
-        }
-        .flag-btn {
-            width: 28px; height: 28px; border-radius: 50%; border: none; cursor: pointer;
-            background-size: cover; background-position: center; transition: var(--transition);
-            filter: grayscale(100%) opacity(0.5); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
-        }
-        .flag-btn.active { filter: grayscale(0%) opacity(1); box-shadow: 0 2px 8px rgba(0,0,0,0.2); transform: scale(1.15); }
-        .flag-us { background-image: url('https://flagcdn.com/w80/us.png'); }
-        .flag-ae { background-image: url('https://flagcdn.com/w80/ae.png'); }
-
-        /* Sleek Symmetric Bubble Toggle */
-        .master-toggle-wrapper {
-            display: flex; justify-content: center; 
-            margin-top: 180px;
-            position: relative; z-index: 10; margin-bottom: -20px;
-        }
-        .master-toggle {
-            display: grid; grid-template-columns: 1fr 1fr;
-            background: var(--gray-light); border-radius: 50px; 
-            padding: 6px; border: 1px solid var(--border-light); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            position: relative; width: 340px; 
-        }
-        .toggle-btn {
-            padding: 12px 0; border: none; background: transparent; cursor: pointer;
-            font-size: 0.95rem; font-weight: 600; font-family: inherit; color: var(--gray-text);
-            z-index: 2; transition: color 0.4s ease; text-align: center;
-        }
-        .toggle-btn.active { color: var(--white); }
-        .toggle-bg {
-            position: absolute; top: 6px; bottom: 6px; left: 6px; width: calc(50% - 6px); 
-            background: var(--brand-dark); border-radius: 40px; 
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.5s ease; 
-            z-index: 1; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        html[lang="ar"] .toggle-bg { left: auto; right: 6px; } 
-        body.mode-provider .toggle-bg { transform: translateX(100%); background: var(--accent-color); }
-        html[lang="ar"] body.mode-provider .toggle-bg { transform: translateX(-100%); background: var(--accent-color); }
-
-        /* General Buttons */
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 14px 32px; border-radius: 50px; font-weight: 600;
-            transition: var(--transition); border: none; cursor: pointer; font-size: 1rem;
-        }
-        .btn-dark { background-color: var(--brand-dark); color: var(--white); }
-        .btn-dark:hover { background-color: #000; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
-        .btn-green { background-color: var(--accent-color); color: var(--white); }
-        .btn-green:hover { background-color: #76854d; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(138, 154, 91, 0.3); }
-
-        /* App Store Buttons */
-        .store-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
-        .btn-store {
-            display: flex; align-items: center; gap: 12px; background: var(--white); color: var(--brand-dark);
-            border: 1px solid var(--border-light); border-radius: 12px; padding: 10px 24px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03); transition: var(--transition); text-align: left;
-        }
-        .btn-store i { font-size: 1.8rem; }
-        .btn-store span { display: block; font-size: 1.1rem; font-weight: 700; line-height: 1.1; }
-        .btn-store small { font-size: 0.75rem; color: var(--gray-text); }
-        .btn-store:hover { border-color: var(--accent-color); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 5% 60px; display: flex; align-items: center; justify-content: space-between;
-            max-width: 1400px; margin: 0 auto; min-height: 85vh; gap: 4rem; perspective: 1000px;
-        }
-        .hero-text { flex: 1; max-width: 600px; z-index: 2; }
-        .hero h1 { font-size: 3.8rem; margin-bottom: 1.5rem; color: var(--brand-dark); letter-spacing: -1px; }
-        .hero p { font-size: 1.25rem; margin-bottom: 2rem; }
-        
-        /* Interactive 3D Phone */
-        .hero-visual { flex: 1; display: flex; justify-content: center; position: relative; z-index: 1; }
-        .phone-wrapper { animation: float 6s ease-in-out infinite; transform-style: preserve-3d; }
-        .phone-frame {
-            width: 330px; height: 670px; background: var(--white); border-radius: 45px;
-            border: 12px solid #111; box-shadow: -20px 30px 60px rgba(0,0,0,0.15), inset 0 0 0 2px #333;
-            overflow: hidden; display: flex; flex-direction: column;
-            transition: transform 0.1s ease-out;
-        }
-        
-        /* Inside the Mockup */
-        .app-header {
-            height: 220px; position: relative;
-            background: url('https://images.unsplash.com/photo-1593702275687-f8b402bf1fb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80') center/cover;
-        }
-        .app-header::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), transparent); }
-        .app-title { position: absolute; bottom: 15px; left: 20px; color: white; z-index: 2; }
-        .app-title h3 { font-size: 1.5rem; margin-bottom: 2px; }
-        .app-title .rating { font-size: 0.85rem; color: #ffd700; display: flex; align-items: center; gap: 5px;}
-        
-        .app-body { padding: 25px 20px; background: #fafafa; flex: 1; }
-        .app-section-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 12px; color: var(--brand-dark); text-transform: uppercase; letter-spacing: 0.5px;}
-        
-        .service-item {
-            background: white; padding: 15px; border-radius: 12px; margin-bottom: 15px;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03); border: 1px solid var(--border-light);
-        }
-        .service-info h4 { font-size: 0.95rem; margin-bottom: 3px; }
-        .service-info p { font-size: 0.8rem; margin: 0; }
-        .service-price { font-weight: 700; color: var(--accent-color); background: rgba(138, 154, 91, 0.1); padding: 5px 10px; border-radius: 8px;}
-
-        .calendar-row { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 15px; scrollbar-width: none; }
-        .calendar-row::-webkit-scrollbar { display: none; }
-        .cal-day { min-width: 60px; text-align: center; padding: 12px 10px; background: white; border-radius: 12px; border: 1px solid var(--border-light); cursor: pointer;}
-        .cal-day.active { background: var(--brand-dark); color: white; border-color: var(--brand-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.2);}
-        .cal-day.active p { color: rgba(255,255,255,0.8); }
-        .cal-day h4 { font-size: 1.2rem; }
-        .cal-day p { font-size: 0.75rem; margin: 0; font-weight: 600;}
-
-        .time-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 25px; }
-        .time-slot { text-align: center; padding: 12px 0; background: white; border-radius: 8px; font-size: 0.85rem; font-weight: 600; border: 1px solid var(--border-light); cursor: pointer;}
-        .time-slot.selected { background: var(--accent-color); color: white; border-color: var(--accent-color); box-shadow: 0 4px 10px rgba(138, 154, 91, 0.3);}
-
-        .app-btn {
-            display: block; width: 100%; padding: 16px; background: var(--brand-dark); 
-            color: white; text-align: center; border-radius: 12px; font-weight: 700;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        /* Sections General */
-        section { padding: 6rem 0; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 3rem; padding: 0 5%; }
-        .section-header h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        
-        /* Endless Swiping Carousel */
-        .categories-bg { background: var(--white); overflow: hidden; position: relative; }
-        .slider-container { width: 100%; overflow-x: auto; white-space: nowrap; cursor: grab; padding: 10px 0; scrollbar-width: none; -ms-overflow-style: none; }
-        .slider-container::-webkit-scrollbar { display: none; }
-        .slider-container:active { cursor: grabbing; }
-        .slider-track { display: flex; gap: 1.5rem; padding: 0 5%; width: max-content; }
-        .cat-card {
-            width: 300px; height: 380px; border-radius: 20px; overflow: hidden; position: relative;
-            display: inline-flex; align-items: flex-end; padding: 2rem; color: white; text-decoration: none;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.06); flex-shrink: 0; user-select: none; -webkit-user-drag: none;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .cat-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
-        .cat-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.8s ease; z-index: 1; pointer-events: none; }
-        .cat-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.1) 80%); z-index: 2; pointer-events: none; }
-        .cat-card:hover .cat-bg { transform: scale(1.1); }
-        .cat-content { position: relative; z-index: 3; width: 100%; white-space: normal; pointer-events: none; }
-        .cat-content h3 { font-size: 1.5rem; margin-bottom: 5px; color: var(--white); text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-        .cat-content p { color: var(--accent-color); font-weight: 600; font-size: 0.95rem; margin: 0; }
-        .categories-bg::before, .categories-bg::after { content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 5; pointer-events: none; }
-        .categories-bg::before { left: 0; background: linear-gradient(to right, white, transparent); }
-        .categories-bg::after { right: 0; background: linear-gradient(to left, white, transparent); }
-
-        /* Features Section */
-        .features-bg { background: var(--brand-light); padding: 6rem 5%; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .feature-card {
-            background: var(--white); padding: 2.5rem 2rem; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: var(--transition); border: 1px solid var(--border-light);
-            display: flex; flex-direction: column;
-        }
-        .feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent-color); }
-        .feature-icon { width: 60px; height: 60px; background: var(--brand-light); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--accent-color); margin-bottom: 1.5rem; }
-        .feature-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
-        .feature-card p { font-size: 0.95rem; }
-
-        /* Pricing Section & Animations */
-        .pricing-section { padding: 6rem 5%; background: var(--white); }
-        .pricing-box {
-            max-width: 800px; margin: 0 auto; background: var(--white); border-radius: 30px;
-            padding: 4rem; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-            border: 2px solid var(--border-light); position: relative; overflow: hidden;
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease, border-color 0.5s ease;
-        }
-        .pricing-box:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
-        
-        .pricing-box.provider-deal { border-color: var(--accent-color); }
-        .pricing-box.provider-deal::before {
-            content: 'BEST VALUE'; position: absolute; top: 25px; right: -35px;
-            background: var(--accent-color); color: white; padding: 8px 40px;
-            transform: rotate(45deg); font-weight: 700; font-size: 0.85rem;
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1); z-index: 2;
-        }
-
-        .price { font-size: 4.5rem; font-weight: 800; color: var(--brand-dark); line-height: 1; margin: 1.5rem 0; }
-        .price span { font-size: 1.5rem; color: var(--gray-text); font-weight: 500; }
-        
-        .price-pulse { animation: pulsePrice 2.5s ease-in-out infinite; color: var(--accent-color); }
-        @keyframes pulsePrice { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } }
-
-        /* Footer */
-        footer { background: var(--brand-dark); color: #aaa; padding: 4rem 5% 2rem; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
-        .footer-logo { filter: brightness(0) invert(1); height: 60px; margin-bottom: 1.5rem; opacity: 0.9;}
-        footer h4 { color: white; margin-bottom: 1.5rem; font-size: 1.1rem; }
-        footer ul { list-style: none; }
-        footer ul li { margin-bottom: 0.8rem; }
-        footer a:hover { color: var(--accent-color); }
-        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
-
-        /* Animations */
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* --- Media Queries (Mobile View & Overlap Fix) --- */
-        @media (max-width: 950px) {
-            .burger-menu { display: block; }
-            
-            .nav-menu {
-                display: none; /* Hidden by default on mobile */
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.98);
-                padding: 20px 5%;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                border-top: 1px solid var(--border-light);
-            }
-            
-            .nav-menu.active {
-                display: flex; /* Shown when burger is clicked */
-            }
-
-            .nav-center { 
-                display: flex; 
-                flex-direction: column; 
-                gap: 1.5rem; 
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid var(--border-light);
-                padding-bottom: 20px;
-            }
-            
-            .nav-right { 
-                flex-direction: column; 
-                width: 100%;
-                gap: 1rem;
-            }
-
-            .nav-right .btn {
-                width: 100%;
-            }
-
-            .hero { flex-direction: column; text-align: center; padding-top: 20px; min-height: auto; }
-            .store-buttons { justify-content: center; }
-            .footer-grid { grid-template-columns: 1fr; text-align: center; }
-            .categories-bg::before, .categories-bg::after { width: 30px; }
-            .master-toggle-wrapper { margin-top: 120px; } 
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="mode-user">
+<body class="mode-user page-home">
 
     <nav id="navbar">
         <div class="logo">
@@ -338,7 +17,7 @@
                 <img src="Logo-PNG-Transparent-background.png" alt="sympleDay Logo" id="nav-logo">
             </a>
         </div>
-        
+
         <button class="burger-menu" id="burgerMenu" aria-label="Toggle navigation">
             <i class="fa-solid fa-bars"></i>
         </button>
@@ -352,8 +31,8 @@
 
             <div class="nav-right">
                 <div class="lang-switch">
-                    <button class="flag-btn flag-us active" onclick="setLang('en')" title="English"></button>
-                    <button class="flag-btn flag-ae" onclick="setLang('ar')" title="Arabic"></button>
+                    <button class="flag-btn flag-us active" title="English"></button>
+                    <button class="flag-btn flag-ae" title="Arabic"></button>
                 </div>
                 <a href="#download" class="btn btn-dark only-user" style="padding: 10px 24px; font-size: 0.9rem;">
                     <span class="only-en">Get the App</span><span class="only-ar">احصل على التطبيق</span>
@@ -368,10 +47,10 @@
     <div class="master-toggle-wrapper">
         <div class="master-toggle">
             <div class="toggle-bg"></div>
-            <button class="toggle-btn active" onclick="setMode('user')" id="btn-user">
+            <button class="toggle-btn active" id="btn-user">
                 <span class="only-en">I am a Client</span><span class="only-ar">أنا عميل</span>
             </button>
-            <button class="toggle-btn" onclick="setMode('provider')" id="btn-provider">
+            <button class="toggle-btn" id="btn-provider">
                 <span class="only-en">I am a Professional</span><span class="only-ar">أنا محترف</span>
             </button>
         </div>
@@ -383,7 +62,7 @@
             <h1 class="only-ar">احجز خدمات مميزة في <br>ثوانٍ.</h1>
             <p class="only-en">Discover the best barbers, salons, and home services across the Emirates. View real-time availability and confirm your appointment instantly. No DMs, no waiting.</p>
             <p class="only-ar">اكتشف أفضل الخدمات في الإمارات. اعرض التوافر في الوقت الفعلي وأكد موعدك على الفور. بدون رسائل، بدون انتظار.</p>
-            
+
             <div class="store-buttons">
                 <a href="#" class="btn-store">
                     <i class="fa-brands fa-apple"></i>
@@ -462,7 +141,7 @@
             <div class="slider-track" id="carousel-track">
                 </div>
         </div>
-        
+
         <div style="text-align: center; margin-top: 3.5rem; padding: 0 5%;">
             <a href="how-it-works.html" class="btn btn-dark" style="box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
                 <span class="only-en">See How It Works</span><span class="only-ar">شاهد كيف تعمل</span> <i class="fa-solid fa-arrow-right"></i>
@@ -616,185 +295,7 @@
         </div>
     </footer>
 
-    <script>
-        // --- On Page Load: Read saved language from LocalStorage ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('sympleDay_language') || 'en';
-            setLang(savedLang); // Apply the saved language immediately
-        });
-
-        // --- Burger Menu Logic ---
-        const burgerBtn = document.getElementById('burgerMenu');
-        const navMenu = document.getElementById('navMenu');
-        
-        burgerBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            
-            // Toggle icon from hamburger to 'X'
-            const icon = burgerBtn.querySelector('i');
-            if(navMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // --- Nav Shrink Effect ---
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            const logo = document.getElementById('nav-logo');
-            if (window.scrollY > 50) {
-                nav.style.padding = '10px 5%';
-                logo.style.height = '90px';
-            } else {
-                nav.style.padding = '15px 5%';
-                logo.style.height = '120px';
-            }
-        });
-
-        // --- Master Toggle Logic ---
-        function setMode(mode) {
-            document.body.className = `mode-${mode}`;
-            document.getElementById('btn-user').classList.toggle('active', mode === 'user');
-            document.getElementById('btn-provider').classList.toggle('active', mode === 'provider');
-        }
-
-        // --- Language Toggle Logic (Updated with LocalStorage) ---
-        function setLang(lang) {
-            // Save the language choice so it remembers it for other pages
-            localStorage.setItem('sympleDay_language', lang);
-
-            const root = document.getElementById('root');
-            const flagUs = document.querySelector('.flag-us');
-            const flagAe = document.querySelector('.flag-ae');
-
-            if (lang === 'ar') {
-                root.setAttribute('lang', 'ar');
-                root.setAttribute('dir', 'rtl');
-                flagAe.classList.add('active');
-                flagUs.classList.remove('active');
-            } else {
-                root.setAttribute('lang', 'en');
-                root.setAttribute('dir', 'ltr');
-                flagUs.classList.add('active');
-                flagAe.classList.remove('active');
-            }
-        }
-
-        // --- 3D Phone Parallax Effect ---
-        const heroInteractive = document.getElementById('hero-interactive');
-        const phone3D = document.getElementById('phone-3d');
-        
-        heroInteractive.addEventListener('mousemove', (e) => {
-            const rect = heroInteractive.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            const rotateY = x / 30;
-            const rotateX = -(y / 30);
-            phone3D.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-        });
-
-        heroInteractive.addEventListener('mouseleave', () => {
-            phone3D.style.transform = `rotateY(0deg) rotateX(0deg)`;
-        });
-
-        // --- Endless Swiping Carousel Logic ---
-        const professions = [
-            { img: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600", enTitle: "Barbers & Salons", arTitle: "صالونات وحلاقين", enSub: "Top-rated grooming", arSub: "عناية شخصية فائقة", proEn: "Fill your chairs", proAr: "املأ كراسيك" },
-            { img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600", enTitle: "Home Cleaning", arTitle: "تنظيف المنازل", enSub: "Trusted local maids", arSub: "عاملات موثوقات", proEn: "Manage dispatch zones", proAr: "إدارة مناطق الإرسال" },
-            { img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600", enTitle: "Dentists & Clinics", arTitle: "أطباء الأسنان", enSub: "Book check-ups easily", arSub: "احجز مواعيدك بسهولة", proEn: "Streamline patient flow", proAr: "تنظيم تدفق المرضى" },
-            { img: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600", enTitle: "Painters & Decor", arTitle: "صباغون ودهانات", enSub: "Refresh your home", arSub: "جدد منزلك", proEn: "Book bigger projects", proAr: "احجز مشاريع أكبر" },
-            { img: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600", enTitle: "Auto Mechanics", arTitle: "ميكانيكا السيارات", enSub: "Mobile & garage repairs", arSub: "إصلاح السيارات", proEn: "Schedule service bays", proAr: "جدولة مواعيد الصيانة" },
-            { img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600", enTitle: "Expert Plumbers", arTitle: "خدمات السباكة", enSub: "Fast emergency fixes", arSub: "إصلاحات سريعة", proEn: "Optimize travel routes", proAr: "تحسين مسارات السفر" },
-            { img: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600", enTitle: "Personal Fitness", arTitle: "اللياقة البدنية", enSub: "Private trainers", arSub: "مدربون شخصيون", proEn: "Schedule client sessions", proAr: "جدولة جلسات العملاء" },
-            { img: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=600", enTitle: "Pet Grooming", arTitle: "العناية بالحيوانات", enSub: "Pamper your pets", arSub: "دلل حيواناتك الأليفة", proEn: "Automate booking slots", proAr: "أتمتة فترات الحجز" },
-            { img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600", enTitle: "Photographers", arTitle: "مصورون محترفون", enSub: "Capture the moment", arSub: "التقط اللحظة", proEn: "Manage photoshoot times", proAr: "إدارة أوقات التصوير" },
-            { img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600", enTitle: "Private Tutors", arTitle: "دروس خصوصية", enSub: "Learn from the best", arSub: "تعلم من الأفضل", proEn: "Organize student lessons", proAr: "تنظيم دروس الطلاب" },
-        ];
-
-        const track = document.getElementById('carousel-track');
-        
-        const generateCards = () => professions.map(p => `
-            <a href="#" class="cat-card">
-                <div class="cat-bg" style="background-image: url('${p.img}');"></div>
-                <div class="cat-overlay"></div>
-                <div class="cat-content">
-                    <h3 class="only-en">${p.enTitle}</h3><h3 class="only-ar">${p.arTitle}</h3>
-                    <p class="only-en only-user">${p.enSub}</p><p class="only-ar only-user">${p.arSub}</p>
-                    <p class="only-en only-provider">${p.proEn}</p><p class="only-ar only-provider">${p.proAr}</p>
-                </div>
-            </a>`).join('');
-
-        track.innerHTML = generateCards() + generateCards();
-
-        const slider = document.getElementById('carousel');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-        let autoScrollSpeed = 1.2;
-
-        function animateCarousel() {
-            if (!isDown) {
-                const isRTL = document.documentElement.dir === 'rtl';
-                
-                if (isRTL) {
-                    slider.scrollLeft -= autoScrollSpeed;
-                    if (Math.abs(slider.scrollLeft) >= track.scrollWidth / 2) {
-                        slider.scrollLeft = 0;
-                    }
-                } else {
-                    slider.scrollLeft += autoScrollSpeed;
-                    if (slider.scrollLeft >= track.scrollWidth / 2) {
-                        slider.scrollLeft = 0;
-                    }
-                }
-            }
-            requestAnimationFrame(animateCarousel);
-        }
-        animateCarousel();
-
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            slider.style.cursor = 'grabbing';
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        });
-        slider.addEventListener('mouseleave', () => { isDown = false; slider.style.cursor = 'grab'; });
-        slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; });
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2;
-            slider.scrollLeft = scrollLeft - walk;
-        });
-
-        slider.addEventListener('touchstart', (e) => {
-            isDown = true;
-            startX = e.touches[0].pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        });
-        slider.addEventListener('touchend', () => { isDown = false; });
-        slider.addEventListener('touchmove', (e) => {
-            if (!isDown) return;
-            const x = e.touches[0].pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2;
-            slider.scrollLeft = scrollLeft - walk;
-        });
-
-        // --- Scroll Reveal Animations ---
-        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+    <script src="js/common.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

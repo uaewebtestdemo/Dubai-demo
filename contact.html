@@ -3,201 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://flagcdn.com https://images.unsplash.com; connect-src 'self';">
     <title>Contact Us | sympleDay</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        :root {
-            /* Brand Colors */
-            --brand-dark: #2c2c2b;
-            --brand-green: #8a9a5b;
-            --brand-light: #F9F6F0;
-            --accent-color: var(--brand-green);
-            --white: #ffffff;
-            --gray-text: #666666;
-            --gray-light: #f5f5f5;
-            --border-light: #eaeaeb;
-            
-            --font-en: 'Montserrat', sans-serif;
-            --font-ar: 'Tajawal', sans-serif;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            background-color: var(--brand-light); color: var(--brand-dark); 
-            line-height: 1.6; font-family: var(--font-en); overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Language & Mode State Handlers */
-        html[lang="ar"] body { font-family: var(--font-ar); }
-        html[lang="en"] .only-ar { display: none !important; }
-        html[lang="ar"] .only-en { display: none !important; }
-        body.mode-user .only-provider { display: none !important; }
-        body.mode-provider .only-user { display: none !important; }
-
-        h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
-        p { color: var(--gray-text); }
-        a { text-decoration: none; color: inherit; }
-
-        /* --- Navigation & Header --- */
-        nav {
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 15px 5%; background: rgba(255, 255, 255, 0.95); 
-            position: fixed; width: 100%; top: 0; z-index: 1000; 
-            box-shadow: 0 4px 30px rgba(0,0,0,0.03); backdrop-filter: blur(15px);
-            transition: var(--transition);
-        }
-        .logo img { height: 120px; transition: var(--transition); }
-
-        .nav-menu {
-            display: flex; align-items: center; gap: 2.5rem;
-        }
-
-        .nav-center { display: flex; gap: 2.5rem; align-items: center; font-weight: 600; font-size: 0.95rem; }
-        .nav-center a { transition: var(--transition); position: relative; }
-        .nav-center a:hover { color: var(--accent-color); }
-        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-
-        /* Burger Menu Icon */
-        .burger-menu {
-            display: none; font-size: 28px; background: none; border: none;
-            color: var(--brand-dark); cursor: pointer; transition: var(--transition);
-        }
-
-        /* Language Flags */
-        .lang-switch {
-            display: flex; align-items: center; gap: 8px; background: var(--gray-light);
-            padding: 5px; border-radius: 30px; border: 1px solid var(--border-light);
-        }
-        .flag-btn {
-            width: 28px; height: 28px; border-radius: 50%; border: none; cursor: pointer;
-            background-size: cover; background-position: center; transition: var(--transition);
-            filter: grayscale(100%) opacity(0.5); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
-        }
-        .flag-btn.active { filter: grayscale(0%) opacity(1); box-shadow: 0 2px 8px rgba(0,0,0,0.2); transform: scale(1.15); }
-        .flag-us { background-image: url('https://flagcdn.com/w80/us.png'); }
-        .flag-ae { background-image: url('https://flagcdn.com/w80/ae.png'); }
-
-        /* Sleek Symmetric Bubble Toggle */
-        .master-toggle-wrapper {
-            display: flex; justify-content: center; margin-top: 180px;
-            position: relative; z-index: 10; margin-bottom: 20px;
-        }
-        .master-toggle {
-            display: grid; grid-template-columns: 1fr 1fr;
-            background: var(--white); border-radius: 50px; 
-            padding: 6px; border: 1px solid var(--border-light); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            position: relative; width: 340px; 
-        }
-        .toggle-btn {
-            padding: 12px 0; border: none; background: transparent; cursor: pointer;
-            font-size: 0.95rem; font-weight: 600; font-family: inherit; color: var(--gray-text);
-            z-index: 2; transition: color 0.4s ease; text-align: center;
-        }
-        .toggle-btn.active { color: var(--white); }
-        .toggle-bg {
-            position: absolute; top: 6px; bottom: 6px; left: 6px; width: calc(50% - 6px); 
-            background: var(--brand-dark); border-radius: 40px; 
-            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.5s ease; 
-            z-index: 1; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        html[lang="ar"] .toggle-bg { left: auto; right: 6px; } 
-        body.mode-provider .toggle-bg { transform: translateX(100%); background: var(--accent-color); }
-        html[lang="ar"] body.mode-provider .toggle-bg { transform: translateX(-100%); background: var(--accent-color); }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 14px 32px; border-radius: 50px; font-weight: 600;
-            transition: var(--transition); border: none; cursor: pointer; font-size: 1rem;
-        }
-        .btn-dark { background-color: var(--brand-dark); color: var(--white); }
-        .btn-dark:hover { background-color: #000; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
-        .btn-green { background-color: var(--accent-color); color: var(--white); }
-        .btn-green:hover { background-color: #76854d; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(138, 154, 91, 0.3); }
-
-        /* --- Contact Page Specific Styles --- */
-        .page-header { text-align: center; padding: 20px 5% 40px; max-width: 800px; margin: 0 auto; }
-        .page-header h1 { font-size: 3.5rem; margin-bottom: 1rem; color: var(--brand-dark); letter-spacing: -1px; }
-        .page-header p { font-size: 1.2rem; }
-
-        .contact-section { padding: 2rem 5% 6rem; max-width: 1200px; margin: 0 auto; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; }
-        
-        /* Contact Info Cards */
-        .contact-info-wrapper { display: flex; flex-direction: column; gap: 2rem; }
-        .contact-info-card {
-            background: var(--white); padding: 2.5rem; border-radius: 25px;
-            border: 1px solid var(--border-light); box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            display: flex; align-items: flex-start; gap: 1.5rem; transition: var(--transition);
-        }
-        .contact-info-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent-color); }
-        .icon-box {
-            width: 60px; height: 60px; border-radius: 15px; background: rgba(138, 154, 91, 0.1);
-            color: var(--accent-color); display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; flex-shrink: 0;
-        }
-        .info-details h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .info-details p, .info-details a { font-size: 1rem; color: var(--gray-text); transition: color 0.3s ease; }
-        .info-details a:hover { color: var(--accent-color); }
-
-        /* Contact Form */
-        .contact-form-wrapper {
-            background: var(--white); padding: 3.5rem; border-radius: 30px;
-            border: 1px solid var(--border-light); box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-        }
-        .contact-form h2 { font-size: 2rem; margin-bottom: 2rem; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.95rem; }
-        .form-control {
-            width: 100%; padding: 15px 20px; border-radius: 12px; border: 1px solid var(--border-light);
-            background: var(--gray-light); font-family: inherit; font-size: 1rem;
-            transition: var(--transition); outline: none; color: var(--brand-dark);
-        }
-        .form-control:focus { background: var(--white); border-color: var(--accent-color); box-shadow: 0 0 0 4px rgba(138, 154, 91, 0.1); }
-        textarea.form-control { resize: vertical; min-height: 150px; }
-        .btn-submit { width: 100%; padding: 18px; font-size: 1.1rem; margin-top: 1rem; }
-
-        /* Scroll Reveal Animation */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* Mobile Header & Layout Adjustments */
-        @media (max-width: 950px) {
-            .burger-menu { display: block; }
-            .nav-menu {
-                display: none; flex-direction: column; position: absolute;
-                top: 100%; left: 0; width: 100%; background: rgba(255, 255, 255, 0.98);
-                padding: 20px 5%; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 1px solid var(--border-light);
-            }
-            .nav-menu.active { display: flex; }
-            .nav-center { display: flex; flex-direction: column; gap: 1.5rem; width: 100%; text-align: center; border-bottom: 1px solid var(--border-light); padding-bottom: 20px; }
-            .nav-right { flex-direction: column; width: 100%; gap: 1rem; }
-            .nav-right .btn { width: 100%; }
-            .master-toggle-wrapper { margin-top: 140px; }
-            
-            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .contact-form-wrapper { padding: 2.5rem 1.5rem; }
-            .page-header h1 { font-size: 2.8rem; }
-        }
-
-        /* Footer */
-        footer { background: var(--brand-dark); color: #aaa; padding: 4rem 5% 2rem; margin-top: 2rem; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
-        .footer-logo { filter: brightness(0) invert(1); height: 60px; margin-bottom: 1.5rem; opacity: 0.9;}
-        footer h4 { color: white; margin-bottom: 1.5rem; font-size: 1.1rem; }
-        footer ul { list-style: none; }
-        footer ul li { margin-bottom: 0.8rem; }
-        footer a:hover { color: var(--accent-color); }
-        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
-        @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="mode-user">
+<body class="mode-user page-contact">
 
     <nav id="navbar">
         <div class="logo">
@@ -205,7 +17,7 @@
                 <img src="Logo-PNG-Transparent-background.png" alt="sympleDay Logo" id="nav-logo">
             </a>
         </div>
-        
+
         <button class="burger-menu" id="burgerMenu" aria-label="Toggle navigation">
             <i class="fa-solid fa-bars"></i>
         </button>
@@ -215,12 +27,13 @@
                 <a href="index.html"><span class="only-en">Home</span><span class="only-ar">الرئيسية</span></a>
                 <a href="how-it-works.html"><span class="only-en">How it Works</span><span class="only-ar">كيف تعمل</span></a>
                 <a href="about-us.html"><span class="only-en">About Us</span><span class="only-ar">من نحن</span></a>
+                <a href="contact.html"><span class="only-en">Contact</span><span class="only-ar">اتصل بنا</span></a>
             </div>
 
             <div class="nav-right">
                 <div class="lang-switch">
-                    <button class="flag-btn flag-us active" onclick="setLang('en')" title="English"></button>
-                    <button class="flag-btn flag-ae" onclick="setLang('ar')" title="Arabic"></button>
+                    <button class="flag-btn flag-us active" title="English"></button>
+                    <button class="flag-btn flag-ae" title="Arabic"></button>
                 </div>
                 <a href="#download" class="btn btn-dark only-user" style="padding: 10px 24px; font-size: 0.9rem;">
                     <span class="only-en">Get the App</span><span class="only-ar">احصل على التطبيق</span>
@@ -235,10 +48,10 @@
     <div class="master-toggle-wrapper">
         <div class="master-toggle">
             <div class="toggle-bg"></div>
-            <button class="toggle-btn active" onclick="setMode('user')" id="btn-user">
+            <button class="toggle-btn active" id="btn-user">
                 <span class="only-en">I am a Client</span><span class="only-ar">أنا عميل</span>
             </button>
-            <button class="toggle-btn" onclick="setMode('provider')" id="btn-provider">
+            <button class="toggle-btn" id="btn-provider">
                 <span class="only-en">I am a Professional</span><span class="only-ar">أنا محترف</span>
             </button>
         </div>
@@ -247,7 +60,7 @@
     <header class="page-header reveal active">
         <h1 class="only-en">Get in Touch</h1>
         <h1 class="only-ar">تواصل معنا</h1>
-        
+
         <p class="only-user only-en">Have a question about a booking or need help with the app? We're here for you.</p>
         <p class="only-user only-ar">هل لديك سؤال حول حجز أو تحتاج إلى مساعدة في التطبيق؟ نحن هنا من أجلك.</p>
 
@@ -257,7 +70,7 @@
 
     <section class="contact-section reveal">
         <div class="contact-grid">
-            
+
             <div class="contact-info-wrapper">
                 <div class="contact-info-card">
                     <div class="icon-box"><i class="fa-regular fa-envelope"></i></div>
@@ -291,8 +104,8 @@
             <div class="contact-form-wrapper">
                 <h2 class="only-en">Send a Message</h2>
                 <h2 class="only-ar">إرسال رسالة</h2>
-                <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
-                    
+                <form class="contact-form">
+
                     <div class="form-group">
                         <label class="form-label only-en">Full Name</label>
                         <label class="form-label only-ar">الاسم الكامل</label>
@@ -311,7 +124,7 @@
                         <select class="form-control" required>
                             <option value="" disabled selected class="only-en">Select a topic...</option>
                             <option value="" disabled selected class="only-ar">اختر موضوعاً...</option>
-                            
+
                             <option class="only-user only-en">App Support</option>
                             <option class="only-user only-en">Booking Issue</option>
                             <option class="only-user only-en">Feedback</option>
@@ -380,81 +193,7 @@
         </div>
     </footer>
 
-    <script>
-        // --- On Page Load: Read saved language from LocalStorage ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('sympleDay_language') || 'en';
-            setLang(savedLang);
-        });
-
-        // --- Burger Menu Logic ---
-        const burgerBtn = document.getElementById('burgerMenu');
-        const navMenu = document.getElementById('navMenu');
-        
-        burgerBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const icon = burgerBtn.querySelector('i');
-            if(navMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // --- Nav Shrink Effect ---
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            const logo = document.getElementById('nav-logo');
-            if (window.scrollY > 50) {
-                nav.style.padding = '10px 5%';
-                logo.style.height = '90px';
-            } else {
-                nav.style.padding = '15px 5%';
-                logo.style.height = '120px';
-            }
-        });
-
-        // --- Master Toggle Logic ---
-        function setMode(mode) {
-            document.body.className = `mode-${mode}`;
-            document.getElementById('btn-user').classList.toggle('active', mode === 'user');
-            document.getElementById('btn-provider').classList.toggle('active', mode === 'provider');
-        }
-
-        // --- Language Toggle Logic (Saved to LocalStorage) ---
-        function setLang(lang) {
-            localStorage.setItem('sympleDay_language', lang);
-
-            const root = document.getElementById('root');
-            const flagUs = document.querySelector('.flag-us');
-            const flagAe = document.querySelector('.flag-ae');
-
-            if (lang === 'ar') {
-                root.setAttribute('lang', 'ar');
-                root.setAttribute('dir', 'rtl');
-                flagAe.classList.add('active');
-                flagUs.classList.remove('active');
-            } else {
-                root.setAttribute('lang', 'en');
-                root.setAttribute('dir', 'ltr');
-                flagUs.classList.add('active');
-                flagAe.classList.remove('active');
-            }
-        }
-
-        // --- Scroll Reveal Animations ---
-        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+    <script src="js/common.js"></script>
+    <script src="js/contact.js"></script>
 </body>
 </html>
