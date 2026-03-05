@@ -518,10 +518,10 @@ footer a:hover { color: var(--accent-color); }
         width: 100%;
     }
 
-    .master-toggle-wrapper { margin-top: 200px; }
+    .master-toggle-wrapper { margin-top: 240px; }
     body.page-how-it-works .master-toggle-wrapper,
     body.page-contact .master-toggle-wrapper,
-    body.page-about-us .master-toggle-wrapper { margin-top: 200px; }
+    body.page-about-us .master-toggle-wrapper { margin-top: 240px; }
 
     /* Home Page Mobile */
     .hero { flex-direction: column; text-align: center; padding-top: 20px; min-height: auto; }
