@@ -105,7 +105,7 @@ body.page-about-us .master-toggle-wrapper {
     background: var(--gray-light); border-radius: 50px;
     padding: 6px; border: 1px solid var(--border-light);
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    position: relative; width: 340px;
+    position: relative; width: 340px; max-width: 100%; box-sizing: border-box;
 }
 /* White background for toggle on darker pages if needed, or consistent gray */
 body.page-how-it-works .master-toggle,
@@ -175,7 +175,7 @@ body.page-how-it-works .btn-store small { font-size: 0.8rem; }
 .hero-visual { flex: 1; display: flex; justify-content: center; position: relative; z-index: 1; }
 .phone-wrapper { animation: float 6s ease-in-out infinite; transform-style: preserve-3d; }
 .phone-frame {
-    width: 330px; height: 670px; background: var(--white); border-radius: 45px;
+    width: 330px; max-width: 100%; box-sizing: border-box; height: 670px; background: var(--white); border-radius: 45px;
     border: 12px solid #111; box-shadow: -20px 30px 60px rgba(0,0,0,0.15), inset 0 0 0 2px #333;
     overflow: hidden; display: flex; flex-direction: column;
     transition: transform 0.1s ease-out;
@@ -251,7 +251,7 @@ section { padding: 6rem 0; }
 
 /* Features Section (Index) */
 .features-bg { background: var(--brand-light); padding: 6rem 5%; }
-.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
 .feature-card {
     background: var(--white); padding: 2.5rem 2rem; border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: var(--transition); border: 1px solid var(--border-light);
@@ -488,6 +488,8 @@ footer a:hover { color: var(--accent-color); }
 
 /* --- Media Queries (Combined) --- */
 @media (max-width: 950px) {
+    .pricing-box { padding: 2rem 1.5rem; }
+
     /* Burger Menu & Nav */
     .burger-menu { display: block; }
 
@@ -563,7 +565,7 @@ footer a:hover { color: var(--accent-color); }
     .travel-ball { left: 33px; transform: translate(-50%, 50%); }
     html[lang="ar"] .travel-ball { left: auto; right: 33px; transform: translate(50%, 50%); }
 
-    .timeline-step, .timeline-step:nth-child(even) { flex-direction: column; align-items: flex-end; }
+    .timeline-step, .timeline-step:nth-child(even) { flex-direction: column; align-items: flex-end; justify-content: center; }
     html[lang="ar"] .timeline-step, html[lang="ar"] .timeline-step:nth-child(even) { align-items: flex-start; }
 
     .step-content { width: calc(100% - 60px); padding: 2rem 1.5rem; }
