@@ -745,3 +745,169 @@ html[lang="ar"] .floating-label {
     mix-blend-mode: overlay;
     pointer-events: none;
 }
+
+/* --- Spotlight / Leaderboard Specific Styles --- */
+.spotlight-section {
+    padding: 2rem 5% 6rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.spotlight-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.leaderboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.leaderboard-row {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.leaderboard-row:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-color: var(--accent-color);
+}
+
+.rank-badge {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-right: 20px;
+    flex-shrink: 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+html[lang="ar"] .rank-badge {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.rank-gold { background: linear-gradient(135deg, #FFD700 0%, #FDB931 100%); }
+.rank-silver { background: linear-gradient(135deg, #E0E0E0 0%, #BDBDBD 100%); color: var(--brand-dark); }
+.rank-bronze { background: linear-gradient(135deg, #CD7F32 0%, #A0522D 100%); }
+.rank-standard { background: var(--gray-light); color: var(--gray-text); box-shadow: none; border: 1px solid var(--border-light); }
+
+.row-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    background: rgba(138, 154, 91, 0.1);
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+html[lang="ar"] .row-icon {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.row-details {
+    flex: 1;
+}
+
+.row-details h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.2rem;
+    color: var(--brand-dark);
+}
+
+.row-details p {
+    font-size: 0.95rem;
+    color: var(--gray-text);
+    margin: 0;
+}
+
+.row-score {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+html[lang="ar"] .row-score {
+    text-align: left;
+    align-items: flex-start;
+}
+
+.score-number {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--brand-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.score-unit {
+    font-size: 0.85rem;
+    color: var(--gray-text);
+    margin-top: 2px;
+}
+
+@media (max-width: 950px) {
+    .leaderboard-row {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+        gap: 1rem;
+    }
+
+    .rank-badge {
+        margin: 0 0 10px 0;
+        width: 55px;
+        height: 55px;
+        font-size: 1.4rem;
+    }
+
+    html[lang="ar"] .rank-badge {
+        margin: 0 0 10px 0;
+    }
+
+    .row-icon {
+        margin: 0 0 10px 0;
+    }
+
+    html[lang="ar"] .row-icon {
+        margin: 0 0 10px 0;
+    }
+
+    .row-score {
+        text-align: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    html[lang="ar"] .row-score {
+        text-align: center;
+        align-items: center;
+    }
+}
