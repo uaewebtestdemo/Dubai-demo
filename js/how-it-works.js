@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         lineBg.style.height = `${maxLineHeight}px`;
 
         // Calculate user's scroll progress in pixels
-        // Formula: (windowHeight / 1.5) - timelineRect.top
-        let currentScrollPx = (windowHeight / 1.5) - timelineRect.top;
+        // Formula: (windowHeight / 2) - timelineRect.top
+        let currentScrollPx = (windowHeight / 2) - timelineRect.top;
 
         // Cap the progress so it never goes past the CTA box or goes below zero
         currentScrollPx = Math.max(0, Math.min(maxLineHeight, currentScrollPx));
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const stepNode = step.querySelector('.step-node');
             if (stepNode) {
                 const nodeRect = stepNode.getBoundingClientRect();
-                if (windowHeight / 1.5 > nodeRect.top) {
+                if (windowHeight / 2 > nodeRect.top) {
                     step.classList.add('active');
                 } else {
                     step.classList.remove('active');
