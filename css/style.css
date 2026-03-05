@@ -286,6 +286,13 @@ section { padding: 6rem 0; }
 .price-pulse { animation: pulsePrice 2.5s ease-in-out infinite; color: var(--accent-color); }
 @keyframes pulsePrice { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } }
 
+/* Top Snap Wrapper for Scroll Snapping offset */
+.top-snap-wrapper {
+    scroll-snap-align: start;
+    padding-top: 150px;
+    margin-top: -150px;
+}
+
 /* --- Subpage Headers --- */
 .page-header { text-align: center; padding: 20px 5% 40px; max-width: 800px; margin: 0 auto; }
 .page-header h1 { font-size: 3rem; margin-bottom: 1rem; color: var(--brand-dark); letter-spacing: -1px; }
@@ -332,8 +339,10 @@ html:has(body.page-how-it-works) {
 
 .timeline-step {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 8rem; position: relative; width: 100%; z-index: 4;
+    margin-bottom: 0; position: relative; width: 100%; z-index: 4;
     scroll-snap-align: center;
+    scroll-snap-stop: always;
+    min-height: 100vh;
 }
 .timeline-step:nth-child(even) { flex-direction: row-reverse; }
 
@@ -383,6 +392,7 @@ html:has(body.page-how-it-works) {
     background: var(--white); border-radius: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.05);
     max-width: 800px; margin: 0 auto; border: 1px solid var(--border-light);
     scroll-snap-align: center;
+    scroll-snap-stop: always;
 }
 .path-end.active {
     opacity: 1; transform: translateY(0) scale(1);
