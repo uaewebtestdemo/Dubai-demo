@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" id="root" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotlight | sympleDay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="mode-user page-spotlight">
+
+    <nav id="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="Logo-PNG-Transparent-background.png" alt="sympleDay Logo" id="nav-logo">
+            </a>
+        </div>
+
+        <button class="burger-menu" id="burgerMenu" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="nav-menu" id="navMenu">
+            <div class="nav-center">
+                <a href="index.html"><span class="only-en">Home</span><span class="only-ar">الرئيسية</span></a>
+                <a href="how-it-works.html"><span class="only-en">How it Works</span><span class="only-ar">كيف تعمل</span></a>
+                <a href="about-us.html"><span class="only-en">About Us</span><span class="only-ar">من نحن</span></a>
+                <a href="contact.html"><span class="only-en">Contact</span><span class="only-ar">اتصل بنا</span></a>
+                <a href="spotlight.html"><span class="only-en">Spotlight</span><span class="only-ar">الأضواء</span></a>
+            </div>
+
+            <div class="nav-right">
+                <div class="lang-switch">
+                    <button class="flag-btn flag-us active" title="English"></button>
+                    <button class="flag-btn flag-ae" title="Arabic"></button>
+                </div>
+                <a href="#download" class="btn btn-dark only-user" style="padding: 10px 24px; font-size: 0.9rem;">
+                    <span class="only-en">Get the App</span><span class="only-ar">احصل على التطبيق</span>
+                </a>
+                <a href="#register" class="btn btn-green only-provider" style="padding: 10px 24px; font-size: 0.9rem;">
+                    <span class="only-en">Start Free Trial</span><span class="only-ar">التجربة المجانية</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="master-toggle-wrapper">
+        <div class="master-toggle">
+            <div class="toggle-bg"></div>
+            <button class="toggle-btn active" id="btn-user">
+                <span class="only-en">I am a Client</span><span class="only-ar">أنا عميل</span>
+            </button>
+            <button class="toggle-btn" id="btn-provider">
+                <span class="only-en">I am a Professional</span><span class="only-ar">أنا محترف</span>
+            </button>
+        </div>
+    </div>
+
+    <header class="page-header reveal active">
+        <h1 class="only-en">Spotlight</h1>
+        <h1 class="only-ar">الأضواء</h1>
+        <p class="only-en">Discover top-rated professionals and the most booked services this month.</p>
+        <p class="only-ar">اكتشف أفضل المحترفين تقييماً والخدمات الأكثر حجزاً هذا الشهر.</p>
+    </header>
+
+    <section class="spotlight-section reveal active">
+        <div class="spotlight-controls">
+            <button class="btn btn-green" id="btn-best-reviewed">
+                <span class="only-en">Best Reviewed</span><span class="only-ar">الأفضل تقييماً</span>
+            </button>
+            <button class="btn btn-dark" id="btn-most-reservations">
+                <span class="only-en">Most Reservations</span><span class="only-ar">الأكثر حجزاً</span>
+            </button>
+        </div>
+
+        <div class="leaderboard-container" id="leaderboard-content">
+            <!-- Dynamic content will be injected here -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <img src="Logo-PNG-Transparent-background.png" alt="sympleDay Logo" class="footer-logo">
+                <p class="only-en" style="color: #888;">The premium booking platform connecting the UAE. Empowering professionals, delighting clients.</p>
+                <p class="only-ar" style="color: #888;">منصة الحجز الرائدة في الإمارات. تمكين المحترفين وإسعاد العملاء.</p>
+            </div>
+            <div>
+                <h4 class="only-en">Platform</h4><h4 class="only-ar">المنصة</h4>
+                <ul>
+                    <li><a href="how-it-works.html"><span class="only-en">How it Works</span><span class="only-ar">كيف تعمل</span></a></li>
+                    <li><a href="#"><span class="only-en">For Providers</span><span class="only-ar">للمزودين</span></a></li>
+                    <li><a href="index.html#pricing"><span class="only-en">Pricing</span><span class="only-ar">الأسعار</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="only-en">Company</h4><h4 class="only-ar">الشركة</h4>
+                <ul>
+                    <li><a href="about-us.html"><span class="only-en">About Us</span><span class="only-ar">من نحن</span></a></li>
+                    <li><a href="contact.html"><span class="only-en">Contact</span><span class="only-ar">اتصل بنا</span></a></li>
+                    <li><a href="#"><span class="only-en">Careers</span><span class="only-ar">الوظائف</span></a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="only-en">Legal</h4><h4 class="only-ar">قانوني</h4>
+                <ul>
+                    <li><a href="#"><span class="only-en">Privacy Policy</span><span class="only-ar">سياسة الخصوصية</span></a></li>
+                    <li><a href="#"><span class="only-en">Terms of Service</span><span class="only-ar">شروط الخدمة</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 sympleDay UAE. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/spotlight.js"></script>
+</body>
+</html>
