@@ -299,6 +299,11 @@ body.page-contact .page-header h1 { font-size: 3.5rem; }
 .about-header p { font-size: 1.25rem; color: var(--gray-text); margin-bottom: 2rem; }
 
 /* --- How It Works Page Styles --- */
+/* Scroll Snapping Container */
+html:has(body.page-how-it-works) {
+    scroll-snap-type: y mandatory;
+}
+
 .timeline-container {
     position: relative; max-width: 1000px; margin: 2rem auto 8rem; padding: 4rem 5%;
 }
@@ -328,6 +333,7 @@ body.page-contact .page-header h1 { font-size: 3.5rem; }
 .timeline-step {
     display: flex; justify-content: space-between; align-items: center;
     margin-bottom: 8rem; position: relative; width: 100%; z-index: 4;
+    scroll-snap-align: center;
 }
 .timeline-step:nth-child(even) { flex-direction: row-reverse; }
 
@@ -376,6 +382,7 @@ body.page-contact .page-header h1 { font-size: 3.5rem; }
     text-align: center; padding: 4rem 5%; position: relative; z-index: 5;
     background: var(--white); border-radius: 30px; box-shadow: 0 20px 60px rgba(0,0,0,0.05);
     max-width: 800px; margin: 0 auto; border: 1px solid var(--border-light);
+    scroll-snap-align: center;
 }
 .path-end.active {
     opacity: 1; transform: translateY(0) scale(1);
@@ -511,10 +518,10 @@ footer a:hover { color: var(--accent-color); }
         width: 100%;
     }
 
-    .master-toggle-wrapper { margin-top: 150px; }
+    .master-toggle-wrapper { margin-top: 200px; }
     body.page-how-it-works .master-toggle-wrapper,
     body.page-contact .master-toggle-wrapper,
-    body.page-about-us .master-toggle-wrapper { margin-top: 150px; }
+    body.page-about-us .master-toggle-wrapper { margin-top: 200px; }
 
     /* Home Page Mobile */
     .hero { flex-direction: column; text-align: center; padding-top: 20px; min-height: auto; }
