@@ -1,20 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Mock Data for Best Reviewed
     const bestReviewedData = [
-        { nameEn: "The Golden Blade", nameAr: "الشفرة الذهبية", categoryEn: "Barbershop", categoryAr: "صالون حلاقة", score: "4.9", unitEn: "/ 5", unitAr: "/ 5", icon: "fa-solid fa-scissors" },
-        { nameEn: "Elite Home Cleaning", nameAr: "النخبة لتنظيف المنازل", categoryEn: "Home Cleaning", categoryAr: "تنظيف منازل", score: "4.8", unitEn: "/ 5", unitAr: "/ 5", icon: "fa-solid fa-broom" },
-        { nameEn: "Perfect Smiles Clinic", nameAr: "عيادة الابتسامة المثالية", categoryEn: "Dentist", categoryAr: "طبيب أسنان", score: "4.8", unitEn: "/ 5", unitAr: "/ 5", icon: "fa-solid fa-tooth" },
-        { nameEn: "Pro Auto Fix", nameAr: "برو لإصلاح السيارات", categoryEn: "Auto Mechanic", categoryAr: "ميكانيكي سيارات", score: "4.7", unitEn: "/ 5", unitAr: "/ 5", icon: "fa-solid fa-wrench" },
-        { nameEn: "Zen Spa & Massage", nameAr: "زين سبا ومساج", categoryEn: "Spa", categoryAr: "منتجع صحي", score: "4.6", unitEn: "/ 5", unitAr: "/ 5", icon: "fa-solid fa-spa" }
+        { nameEn: "The Golden Blade", nameAr: "الشفرة الذهبية", categoryEn: "Barbershop", categoryAr: "صالون حلاقة", score: "4.9", unitEn: "/ 5", unitAr: "/ 5", icon: "fa-solid fa-scissors", reviewsAllTime: "1,200", reviewsThisMonth: "150" },
+        { nameEn: "Elite Home Cleaning", nameAr: "النخبة لتنظيف المنازل", categoryEn: "Home Cleaning", categoryAr: "تنظيف منازل", score: "4.8", unitEn: "/ 5", unitAr: "/ 5", icon: "fa-solid fa-broom", reviewsAllTime: "850", reviewsThisMonth: "120" },
+        { nameEn: "Perfect Smiles Clinic", nameAr: "عيادة الابتسامة المثالية", categoryEn: "Dentist", categoryAr: "طبيب أسنان", score: "4.8", unitEn: "/ 5", unitAr: "/ 5", icon: "fa-solid fa-tooth", reviewsAllTime: "640", reviewsThisMonth: "95" },
+        { nameEn: "Pro Auto Fix", nameAr: "برو لإصلاح السيارات", categoryEn: "Auto Mechanic", categoryAr: "ميكانيكي سيارات", score: "4.7", unitEn: "/ 5", unitAr: "/ 5", icon: "fa-solid fa-wrench", reviewsAllTime: "510", reviewsThisMonth: "80" },
+        { nameEn: "Zen Spa & Massage", nameAr: "زين سبا ومساج", categoryEn: "Spa", categoryAr: "منتجع صحي", score: "4.6", unitEn: "/ 5", unitAr: "/ 5", icon: "fa-solid fa-spa", reviewsAllTime: "420", reviewsThisMonth: "65" }
     ];
 
     // Mock Data for Most Reservations
     const mostReservationsData = [
-        { nameEn: "Quick Fix Plumbers", nameAr: "السباك السريع", categoryEn: "Plumbing", categoryAr: "سباكة", score: "342", unitEn: " bookings", unitAr: " حجز", icon: "fa-solid fa-faucet-drip" },
-        { nameEn: "Fresh Look Salon", nameAr: "صالون الإطلالة الجديدة", categoryEn: "Salon", categoryAr: "صالون", score: "289", unitEn: " bookings", unitAr: " حجز", icon: "fa-solid fa-spray-can" },
-        { nameEn: "Master Painters", nameAr: "خبراء الطلاء", categoryEn: "Painters", categoryAr: "صباغون", score: "215", unitEn: " bookings", unitAr: " حجز", icon: "fa-solid fa-paint-roller" },
-        { nameEn: "FitLife Personal Training", nameAr: "فيت لايف للتدريب الشخصي", categoryEn: "Fitness", categoryAr: "لياقة بدنية", score: "198", unitEn: " bookings", unitAr: " حجز", icon: "fa-solid fa-dumbbell" },
-        { nameEn: "Happy Paws Grooming", nameAr: "هابي باوز للعناية بالحيوانات", categoryEn: "Pet Grooming", categoryAr: "عناية بالحيوانات", score: "176", unitEn: " bookings", unitAr: " حجز", icon: "fa-solid fa-paw" }
+        { nameEn: "Quick Fix Plumbers", nameAr: "السباك السريع", categoryEn: "Plumbing", categoryAr: "سباكة", score: "342", unitEn: " bookings", unitAr: " حجز", icon: "fa-solid fa-faucet-drip", reviewsAllTime: "980", reviewsThisMonth: "110" },
+        { nameEn: "Fresh Look Salon", nameAr: "صالون الإطلالة الجديدة", categoryEn: "Salon", categoryAr: "صالون", score: "289", unitEn: " bookings", unitAr: " حجز", icon: "fa-solid fa-spray-can", reviewsAllTime: "750", reviewsThisMonth: "90" },
+        { nameEn: "Master Painters", nameAr: "خبراء الطلاء", categoryEn: "Painters", categoryAr: "صباغون", score: "215", unitEn: " bookings", unitAr: " حجز", icon: "fa-solid fa-paint-roller", reviewsAllTime: "430", reviewsThisMonth: "55" },
+        { nameEn: "FitLife Personal Training", nameAr: "فيت لايف للتدريب الشخصي", categoryEn: "Fitness", categoryAr: "لياقة بدنية", score: "198", unitEn: " bookings", unitAr: " حجز", icon: "fa-solid fa-dumbbell", reviewsAllTime: "610", reviewsThisMonth: "85" },
+        { nameEn: "Happy Paws Grooming", nameAr: "هابي باوز للعناية بالحيوانات", categoryEn: "Pet Grooming", categoryAr: "عناية بالحيوانات", score: "176", unitEn: " bookings", unitAr: " حجز", icon: "fa-solid fa-paw", reviewsAllTime: "390", reviewsThisMonth: "45" }
     ];
 
     const btnBestReviewed = document.getElementById('btn-best-reviewed');
@@ -45,11 +45,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h3 class="only-ar">${item.nameAr}</h3>
                         <p class="only-en">${item.categoryEn}</p>
                         <p class="only-ar">${item.categoryAr}</p>
+                        <p class="only-en review-stats">Reviews: ${item.reviewsAllTime} All Time | ${item.reviewsThisMonth} This Month</p>
+                        <p class="only-ar review-stats">التقييمات: ${item.reviewsAllTime} في جميع الأوقات | ${item.reviewsThisMonth} هذا الشهر</p>
                     </div>
                     <div class="row-score">
                         <div class="score-number">${scoreIcon} ${item.score}</div>
                         <div class="score-unit only-en">${item.unitEn}</div>
                         <div class="score-unit only-ar">${item.unitAr}</div>
+                    </div>
+                    <div class="row-actions">
+                        <button class="btn btn-green reserve-btn">
+                            <span class="only-en">Reserve</span>
+                            <span class="only-ar">احجز</span>
+                        </button>
                     </div>
                 </div>
             `;
